@@ -9,6 +9,7 @@
 
 # Настройка ssh_config
 Открываем `vim /etc/ssh/sshd_config` 
+
 PasswordAuthentication no 
 > Если мы хотим доступ только по ключам
 
@@ -25,7 +26,8 @@ Port 4754
 Перезапускаем ssh: 
 `sudo systemctl daemon-reload`
 `sudo systemctl restart ssh.socket`
- и выходим `exit`
+
+и выходим `exit`
 
 Подключаемся заново `ssh root@95.777.777.77.77 -p 4754`
 
@@ -39,6 +41,7 @@ Port 4754
 `vim /etc/knockd.conf`
 
 Чистим файл и вставляем такие настройки:
+
 ```
 [options]
 	UseSyslog
@@ -62,13 +65,16 @@ Port 4754
 Сохраняем, выходим
 ## Настраиваем автозапуск knockd
 `sudo vim /etc/default/knockd`
+
 Включаем автозапуск и настраиваем подключение
 
 ```
 START_KNOCKD=1 
 KNOCKD_OPTS="-i eth0"
 ```
+
 Сохраняем и включаем
+
 ```
 sudo systemctl start knockd
 sudo systemctl enable knockd
